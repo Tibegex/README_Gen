@@ -16,7 +16,7 @@ function renderLicenseLink(license) {
   if (license === "") {
     license = "";
   } else {
-    license = "- [License](#license)";
+    license = "- [License](#license)\n";
   }
   return license;
 }
@@ -25,7 +25,9 @@ function renderLicenseLink(license) {
 // If there is no license, return an empty string
 function renderLicenseSection(license) {
   if (license !== "") {
-    licenseSection = `## License \n`;
+    licenseSection = `## License \n This project is licensed under the terms of the ${license} license. For more information please, refer to [https://choosealicense.com/]. `;
+  } else {
+    licenseSection = "";
   }
   return licenseSection;
 }
@@ -33,40 +35,40 @@ function renderLicenseSection(license) {
 // TODO: Create a function to generate markdown for README
 function generateMarkdown(data) {
   return `# ${data.title}
-
-  ## Description
-
-  ${data.description}
-
-  ## Table of Contents
-
-  *[Installation](#installation)
-  *[Usage](#usage)
-  ${renderLicenseLink(data.license)}
-  - [Contributing](#contributing)
-  - [Tests](#tests)
-  - [Questions](#questions)
-
-  ## Installation
-
-  ${data.installation}
-
-  ## Usage
-
-  ${data.usage}
-  ${renderLicenseSection(data.license)}
   ${renderLicenseBadge(data.license)}
 
-  ## Contributing
+## Description
 
-  ${data.contributors}
+${data.description}
+
+## Table of Contents
+
+- [Installation](#installation)
+- [Usage](#usage)
+${renderLicenseLink(data.license)}- [Contributing](#contributing)
+- [Tests](#tests)
+- [Questions](#questions)
+
+## Installation
+
+${data.installation}
+
+## Usage
+
+${data.usage}
+
+${renderLicenseSection(data.license)}
+
+## Contributing
+
+${data.contributors}
   
-  ## Tests
+## Tests
   
-  ${data.test}
+${data.test}
  
-  ## Questions
+## Questions
   
-  Any Questions? Contact me! Github: ${data.github} Email: ${data.email}`;
+Any Questions? Contact me! Github: ${data.github} Email: ${data.email}`;
 }
 module.exports = generateMarkdown;
